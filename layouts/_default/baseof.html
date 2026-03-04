@@ -3,8 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {{ $metaDescription := .Description | default .Site.Params.siteDescription }}
+    {{ $ogImage := .Site.Params.ogImage | absURL }}
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-    <meta name="description" content="Open RTLS provides open source building blocks for RTLS-enabled applications." />
+    <meta name="description" content="{{ $metaDescription }}" />
+    <link rel="canonical" href="{{ .Permalink }}" />
+
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
+    <meta property="og:description" content="{{ $metaDescription }}" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="og:image" content="{{ $ogImage }}" />
+    <meta property="og:site_name" content="{{ .Site.Title }}" />
+    <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
 
     {{ $styles := resources.Get "css/main.css" | css.PostCSS }}
     {{ if not hugo.IsServer }}
@@ -24,6 +34,106 @@
         {{ end }}
       {{ end }}
     {{ end }}
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Open RTLS",
+        "url": "{{ .Site.BaseURL }}",
+        "logo": "{{ $ogImage }}",
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "FORMATION GmbH",
+          "url": "{{ .Site.Params.formationUrl }}"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Open RTLS",
+        "url": "https://open-rtls.com/",
+        "description": "Open RTLS provides open source building blocks for RTLS-enabled applications."
+      }
+    </script>
+
+    {{ if eq .RelPermalink "/faq/" }}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What license will Open RTLS use?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Everything will be released under the MIT License to enable broad adoption and collaboration across vendors and integrators."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why is FORMATION doing this?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "FORMATION observed repeated reinvention of similar in-house RTLS components and built Open RTLS to provide an open, shared foundation for the ecosystem."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I become a member or contributor?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Not yet. Open RTLS is currently collecting feedback while the collaboration model is being designed."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why create a new organization?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The goal is not to replace standards but to provide standards-aligned, interoperable open source components needed beyond a hub, including mapping and integration tooling."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "I'm an RTLS integrator and we like OMLOX. What should we do?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Share your requirements and integration pain points, evaluate components as they are released, and use federation and compatibility approaches with existing hubs."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "When will the first repositories be published?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The first releases are planned during Spring 2026, following prototyping and requirements work in March 2026."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How should I share requirements or feature requests?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Email concrete use cases, constraints, current setup, and blockers so the roadmap can be shaped around real deployments."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the governance model for Open RTLS?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "FORMATION GmbH currently controls the domain and GitHub organization and is guiding initial creation, while remaining open to evolving governance based on stakeholder feedback."
+              }
+            }
+          ]
+        }
+      </script>
+    {{ end }}
   </head>
   <body>
     <div class="min-h-screen">
@@ -32,6 +142,7 @@
           <a href="{{ "/" | relLangURL }}" class="text-sm font-semibold tracking-wide">Open RTLS</a>
           <div class="flex items-center gap-6 text-sm">
             <a href="{{ "/" | relLangURL }}">{{ i18n "nav_home" }}</a>
+            <a href="{{ "/faq/" | relLangURL }}">{{ i18n "nav_faq" }}</a>
             <a href="{{ "/imprint/" | relLangURL }}">{{ i18n "nav_imprint" }}</a>
           </div>
         </nav>
@@ -45,7 +156,8 @@
         <div class="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-6 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-8">
           <p>© <span id="year"></span> FORMATION GmbH</p>
           <div class="flex items-center gap-6">
-            <a href="mailto:info+rtls@tryformation.com">info+rtls@tryformation.com</a>
+            <a href="mailto:info+rtls@tryformation.com">{{ i18n "email_link_text" }}</a>
+            <a href="{{ "/faq/" | relLangURL }}">{{ i18n "nav_faq" }}</a>
             <a href="{{ "/imprint/" | relLangURL }}">{{ i18n "nav_imprint" }}</a>
           </div>
         </div>

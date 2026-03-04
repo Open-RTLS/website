@@ -4,11 +4,20 @@
 - id: nav_imprint
   translation: Imprint
 
+- id: nav_faq
+  translation: FAQ
+
 - id: cta_primary
-  translation: Contact us to contribute
+  translation: Contact Us
 
 - id: cta_secondary
   translation: Explore components
+
+- id: cta_faq
+  translation: Read the FAQ
+
+- id: email_link_text
+  translation: Email us
 
 - id: phase_title
   translation: Current project phase
@@ -22,11 +31,23 @@
 - id: components_intro
   translation: The stack is designed to be practical, interoperable, and immediately useful for RTLS hardware and software vendors.
 
+- id: roadmap_title
+  translation: Roadmap
+
+- id: roadmap_intro
+  translation: The 2026 plan focuses on launching practical open source components fast, validating them with the industry, and iterating toward a stable 1.0 foundation.
+
+- id: standards_title
+  translation: Standards alignment
+
+- id: standards_intro
+  translation: Open RTLS is built around widely adopted standards to support interoperability, integration speed, and long-term compatibility.
+
 - id: contribute_title
   translation: Learn more, suggest features, or become a contributor
 
 - id: contribute_text
   translation: Contact us to share requirements, propose integrations, and help shape the first wave of Open RTLS open source modules.
 
-- id: supported_by
-  translation: Supported by
+- id: created_by
+  translation: Created by

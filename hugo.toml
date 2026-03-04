@@ -6,6 +6,11 @@ timeZone = "Europe/Berlin"
 enableRobotsTXT = true
 disableKinds = ["taxonomy", "term"]
 
+[params]
+  siteDescription = "Open RTLS provides open source building blocks for RTLS-enabled applications."
+  ogImage = "/images/open-rtls-logo.svg"
+  formationUrl = "https://tryformation.com/"
+
 [languages]
   [languages.en]
     languageName = "English"
