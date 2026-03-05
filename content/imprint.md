@@ -12,7 +12,7 @@ Urbanstraße 71<br/>
 10967 Berlin<br/>
 Germany
 
-Email: [info@tryformation.com](mailto:info@tryformation.com)<br/>
+Email: [info@open-rtls.com](mailto:info@open-rtls.com)<br/>
 Web: [tryformation.com](https://tryformation.com)<br/>
 
 Entry in the Commercial Register: Berlin<br/>
